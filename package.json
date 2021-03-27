@@ -1,0 +1,35 @@
+{
+  "name": "whatsinmybel.ly",
+  "version": "1.0.0",
+  "description": "A full stack food tracker application.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "watch": "nodemon server.js",
+    "seed": "node seeds/seed.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Connerjm/whatsinmybel.ly.git"
+  },
+  "author": "Group 3",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/Connerjm/whatsinmybel.ly/issues"
+  },
+  "homepage": "https://github.com/Connerjm/whatsinmybel.ly#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "connect-session-sequelize": "^7.1.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.1",
+    "express-session": "^1.17.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.6.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.23.0"
+  }
+}
