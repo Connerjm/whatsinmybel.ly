@@ -1,0 +1,26 @@
+{{dashheader.handlebars}}
+<div>
+    <button id="go-back-button">arrow</button>
+    <h1>Add meal</h1>
+    <div class="card">
+        <form>
+            <div>
+                <label for="type-input">Meal type</label>
+                <select id="type-input" class="form-select">
+                    <option selected>Choose a meal type</option>
+                    <option value="breakfast">Breakfast</option>
+                    <option value="lunch">Lunch</option>
+                    <option value="dinner">Dinner</option>
+                </select>
+            </div>
+            <div>
+                <label for="foods-input">Search database for a food or meal</label>
+                <input type="text" id="foods-input" placeholder="Search foods">
+                {{!-- Maybe change to datalist? --}}
+            </div>
+            <hr>
+            <button id="cancel-button">Cancel</button>
+            <button id="save-button">Save</button>
+        </form>
+    </div>
+</div>
