@@ -1,0 +1,12 @@
+{{dashheader.handlebars}}
+<main>
+    <div>
+        <h2>Todays meals</h2>
+        <button id="add-meal-button">Add meal</button>
+    </div>
+    <div id="meals">
+        {{#for meals as |meal|}}
+        {{> meal.handlebars}}
+        {{/for}}
+    </div>
+</main>
