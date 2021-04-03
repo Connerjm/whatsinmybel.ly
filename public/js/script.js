@@ -6,17 +6,17 @@ $(document).ready(() =>
 
     $("#sign-in").click(() =>
     {
-        document.location.replace("signin");
+        document.location.replace("/signin");
     });
 
     $("#sign-up").click(() =>
     {
-        document.location.replace("signup");
+        document.location.replace("/signup");
     });
 
     $("#dashboard").click(() =>
     {
-        document.location.replace("dashboard");
+        document.location.replace("/dashboard");
     });
 
     $("#logout").click(() =>

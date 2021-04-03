@@ -4,17 +4,21 @@ const withAuth = require('../utils/auth');
 const timeStamp = require('../utils/helpers');
 
 // User login route
-router.get('/sign-in', (req, res) => {
+router.get('/signin', (req, res) => {
     if (req.session.loggedIn) {
         res.redirect('/dashboard');
         return;
     }
-    res.render('login');
+    res.render('signinorsignup', { new_user: false });
 });
 
 // Direct user to signup page when clicking signup link
-router.get('/sign-up', (req, res) => {
-    res.render('signup');
+router.get('/signup', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/dashboard');
+        return;
+    }
+    res.render('signinorsignup', { new_user: true });
 });
 
 // Route for page to create a new blog post
