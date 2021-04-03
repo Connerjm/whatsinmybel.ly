@@ -27,13 +27,18 @@
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="./js/script.js"></script>
 
+    {{!-- Title --}}
+
     <title>whatsinmybel.ly</title>
 </head>
 
 <body>
+    {{!-- Header with three columns, one of which is empty. --}}
     <header class="header">
         <div class="row">
+            {{!-- Empty. --}}
             <div class="col-md-4"></div>
+            {{!-- Logo. --}}
             <div class="col-md-4">
                 <div class="header-logo-layout">
                     <img src="../assets/avocado_animation.png" alt="Happy avocado getting really full."
@@ -41,6 +46,7 @@
                     <p class="header-logo-start" id="site-name">whatsinmy<span class="header-logo-end">bel.ly</span></p>
                 </div>
             </div>
+            {{!-- Buttons. Signin/Signout || Dashboard/Logout --}}
             <div class="col-md-4 flex-row" style="margin-top: auto;">
                 {{#if logged_in}}
                 <button class="btn subtle" id="dashboard"><i class="fas fa-tachometer-alt-fastest"
