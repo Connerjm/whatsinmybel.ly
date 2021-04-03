@@ -37,6 +37,6 @@ app.use(routes);
 
 sequelize.sync({ force: false }).then(() => {
     app.listen(PORT, () => console.log
-        (`\n |-----------------------------------------------| \n |    Code Zone is now listening on Port ${PORT}!   |\n |-----------------------------------------------| `));
+        (`\n |-----------------------------------------------| \n |   Whatsinmybel.ly is now listening on Port ${PORT}!   |\n |-----------------------------------------------| `));
   });
   
