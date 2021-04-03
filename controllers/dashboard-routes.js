@@ -1,16 +1,14 @@
 const router = require('express').Router();
-const { User, Blog, Meal } = require('../models');
+const { User, Meal } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, (req, res) => {
     console.log(req.session);
 
-    Blog.findAll({
+    User.findAll({
         where: {
             creator_id: req.session.user_id
         },
-        //change this, users choice
-        order: [['created_at', 'DESC']],
         include: [
             {
                 model: User,
@@ -18,7 +16,7 @@ router.get('/', withAuth, (req, res) => {
             },
             {
                 model: Meal,
-                attributes: ['content', 'user_id'],
+                attributes: ['meal_name'],
                 include: [
                     {
                         model: User,
@@ -46,24 +44,25 @@ router.get('/edit/:id', withAuth, (req, res) => {
         },
         attributes: [
             'id',
-            'title',
-            'creator_id',
-            'content',
-            //change to user entry lunch dinner etc
-            //'created_at',
+            'meal_name',
+            'calories',
+            'fat',
+            'carbs',
+            'protein',
+            'sodium'
         ],
         include: [
             {
                 model: Meal,
-                attributes: ['content', 'user_id', 'blog_id'],
+                attributes: ['meal_name', 'calories', 'fat', 'carbs', 'protein', 'sodium'],
                 include: {
                     model: User,
-                    attributes: ['username']
+                    attributes: ['name']
                 }
             },
             {
                 model: User,
-                attributes: ['username']
+                attributes: ['name']
             }
         ]
     }).
