@@ -1,6 +1,6 @@
 const router = require('express').Router();
 //model, when all files are complete
-const { User, Blog, Meal } = require('../../models');
+const { User, Meal } = require('../../models');
 
 // GET all users
 router.get('/', (req, res) => {
@@ -25,12 +25,8 @@ router.get('/:id', (req, res) => {
         },
         include: [
             {
-                model: Blog,
-                attributes: ['id', 'title', 'content']
-            },
-            {
-                model: Comment,
-                attributes: ['id', 'content'],
+                model: Meal,
+                attributes: ['id', 'title', 'meal_name']
             }
         ]
     })
@@ -50,14 +46,14 @@ router.get('/:id', (req, res) => {
 // POST - Create a user
 router.post('/', (req, res) => {
     User.create({
-        username: req.body.username,
+        name: req.body.name,
         email: req.body.email,
         password: req.body.password
     })
         .then(userData => {
             req.session.save(() => {
                 req.session.user_id = userData.id;
-                req.session.username = userData.username;
+                req.session.name = userData.name;
                 req.session.loggedIn = true;
 
                 res.json(userData);
@@ -91,10 +87,10 @@ router.post('/sign-in', (req, res) => {
 
             req.session.save(() => {
                 req.session.user_id = userData.id;
-                req.session.username = userData.username;
+                req.session.name = userData.name;
                 req.session.loggedIn = true;
 
-                res.json({ user: userData, message: `Hi ${userData.username}, you're logged in! Time to blog!!` });
+                res.json({ user: userData, message: `Hi ${userData.name}, you're logged in! Time to blog!!` });
             });
         });
 });
