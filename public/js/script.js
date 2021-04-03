@@ -21,19 +21,65 @@ $(document).ready(() =>
 
     $("#logout").click(() =>
     {
-        //api logout.
+        $.ajax({
+            url: "/api/user-routes/logout",
+            type: "POST",
+            headers: {"Content-Type" : "application/json" },
+            success: () => { document.location.replace("/signin") },
+            error: (req, text, err) =>
+            {
+                alert(`Something went wrong! Status: ${text}; Error: ${err}`);
+            }
+        });
     });
 
     /* Sign in or Sign up pages. */
 
-    $("#sign-in-button").click(() =>
+    $("#sign-in-button").click((e) =>
     {
-        //api signin.
+        e.preventDefault();
+
+        const email = $("#email-input").val().trim();
+        const password = $("#password-input").val().trim();
+
+        if (email && password)
+        {
+            $.ajax({
+                url: "/api/user-routes/sign-in",
+                type: "POST",
+                data: JSON.stringify({ email, password }),
+                headers: { "Content-Type": "application/json" },
+                success: () => { document.location.replace("/") },
+                error: (req, text, err) =>
+                {
+                    alert(`Something went wrong! Status: ${text}; Error: ${err}`);
+                }
+            });
+        }
     });
 
-    $("#sign-up-button").click(() =>
+    $("#sign-up-button").click((e) =>
     {
-        //api signup.
+        e.preventDefault();
+
+        const username = $("#username-input").val().trim();
+        const email = $("#email-input").val().trim();
+        const password = $("#password-input").val().trim();
+
+        if (username && email && password)
+        {
+            $.ajax({
+                url: "/api/user-routes/",
+                type: "POST",
+                data: JSON.stringify({ username, email, password }),
+                headers: { "Content-Type": "application/json" },
+                success: () => { document.location.replace("/") },
+                error: (req, text, err) =>
+                {
+                    alert(`Something went wrong! Status: ${text}; Error: ${err}`);
+                }
+            });
+        }
     });
 
     /* All meals page. */
