@@ -5,7 +5,8 @@
       "fat": 14,
       "carbs": 40,
       "protein": 14,
-      "sodium": 30
+      "sodium": 30,
+      "user_id": 2
     },
     {
       "meal_name": "Steak and Eggs",
