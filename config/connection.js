@@ -1,8 +1,11 @@
+//Imports
 const Sequelize = require('sequelize');
 require('dotenv').config();
 
+//Declare the DB.
 let sequelize;
 
+//Create the DB.
 if (process.env.JAWSDB_URL) {
   sequelize = new Sequelize(process.env.JAWSDB_URL);
 } else {
@@ -18,4 +21,5 @@ if (process.env.JAWSDB_URL) {
   );
 }
 
+//Export the DB.
 module.exports = sequelize;
