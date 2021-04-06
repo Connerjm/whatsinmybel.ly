@@ -77,4 +77,5 @@ Meal.init(
   }
 );
 
+//Export the model.
 module.exports = Meal;

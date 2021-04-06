@@ -1,7 +1,10 @@
+//Imports.
 const router = require('express').Router();
 const { User, Meal } = require('../models');
 const withAuth = require('../utils/auth');
 const timeStamp = require('../utils/helpers');
+
+/* Page routes. */
 
 // User login route
 router.get('/signin', (req, res) => {
@@ -22,11 +25,14 @@ router.get('/signup', (req, res) => {
 });
 
 // Route for page to create a new blog post
-router.get('/add-meal', withAuth, (req, res) => {
+router.get('/addmeal', withAuth, (req, res) => {
     if (req.session.loggedIn) {
-        res.render('add-meal', { loggedIn: true });
+        res.render('addmeal', { loggedIn: true });
     }
 });
 
+//Dashboard route.
+//TODO
 
+//Export router.
 module.exports = router;

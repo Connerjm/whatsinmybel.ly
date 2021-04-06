@@ -13,6 +13,7 @@ User.hasMany(Meal, {
   onDelete: "CASCADE"
 });
 
+//Export them.
 module.exports = {
   Meal,
   User

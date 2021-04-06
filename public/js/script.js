@@ -82,7 +82,7 @@ $(document).ready(() =>
         }
     });
 
-    /* All meals page. */
+    /* Add meals page. */
 
     $("#add-meal-button").click(() =>
     {
