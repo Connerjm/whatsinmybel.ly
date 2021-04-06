@@ -6,6 +6,7 @@ $(document).ready(() =>
 
     $("#sign-in").click(() =>
     {
+        //Simply redirect.
         document.location.replace("/signin");
     });
 
@@ -21,6 +22,7 @@ $(document).ready(() =>
 
     $("#logout").click(() =>
     {
+        //Don't need any info, just logout and redirect to the signin page afterwards.
         $.ajax({
             url: "/api/user-routes/logout",
             type: "POST",
@@ -39,9 +41,11 @@ $(document).ready(() =>
     {
         e.preventDefault();
 
+        //Get fields from form
         const email = $("#email-input").val().trim();
         const password = $("#password-input").val().trim();
 
+        //If both are there.
         if (email && password)
         {
             $.ajax({

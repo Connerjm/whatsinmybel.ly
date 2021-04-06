@@ -1,9 +1,12 @@
+{{!-- If new user, have them sign up. --}}
 {{#if new_user}}
 {{> signup}}
+{{!-- Else their returnings, have them sign in. --}}
 {{else}}
 {{> signin}}
 {{/if}}
 
+{{!-- Info container. --}}
 <div class="container" style="position: relative; margin-top: 40px">
     <div class="row">
         <div class="col-lg-12">
@@ -29,6 +32,7 @@
     </div>
 </div>
 
+{{!-- Simple footer. --}}
 <footer class="container fixed">
     <div class="flex-row" style="justify-content: space-between;">
         <h4 class="foreground-white elevation">&copy;2021</h4>
