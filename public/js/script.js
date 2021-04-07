@@ -91,42 +91,94 @@ $(document).ready(() =>
 
     /* Meal page. */
 
-    $("#edit-meal").click(() =>
-    {
-
-    });
-
     $("#delete-meal").click(() =>
     {
-
-    });
-
-    /* Dash header. */
-
-    $("#date-left").click(() =>
-    {
-
-    });
-
-    $("#date-right").click(() =>
-    {
-
+        //Remove meal from db.
     });
 
     /* Add meal page. */
 
     $("#go-back-button").click(() =>
     {
-
+        document.location.replace("/dashboard");
     });
 
-    $("#cancel-button").click(() =>
+    function select(e)
     {
+        e.preventDefault();
+        //Get fields.
+        const id = $(this).data("id");
+        const name = $(this).data("name");
+        const brand = $(this).data("brand");
+        const cal = $(this).data("cal");
+        const pro = $(this).data("pro");
+        const carb = $(this).data("carbs");
+        const fat = $(this).data("fats");
 
+        console.log(`${id} ${name} ${brand} ${cal} ${pro} ${carb} ${fat}`);
+        //Hide the results box.
+        $("#results-box").css("display", "none");
+        //Clear text box.
+        $("#foods-input").val("");
+        //Add food to saved items box.
+        
+        //Show saved items box.
+    };
+
+    $("#search-button").click((e) =>
+    {
+        e.preventDefault();
+
+        //Get search term.
+        const search = $("#foods-input").val().trim();
+        
+        //search nutritionx api.
+        if (search)
+        {
+            $.ajax({
+                url: `https://nutritionix-api.p.rapidapi.com/v1_1/search/${search}?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat%2Cnf_protein%2Cnf_total_carbohydrate`,
+                type: "GET",
+                headers: {
+                    "x-rapidapi-key": "48c11b17afmsh79f4383215dc494p1e1db3jsn936de6f29bd0",
+                    "x-rapidapi-host": "nutritionix-api.p.rapidapi.com"
+                },
+                success: response => {
+                    console.log(response.hits);
+                    //put results in cards.
+                    response.hits.forEach(el => {
+                        let card = $(`<div></div`);
+                        card.append($(`<h3>${el.fields.item_name}</h3>`));
+                        card.append($(`<p>Brand: ${el.fields.brand_name}</p>`));
+                        card.append($(`<p>Calories: ${el.fields.nf_calories}</p>`));
+                        card.append($(`<p>Protein: ${el.fields.nf_protein}</p>`));
+                        card.append($(`<p>Carbs: ${el.fields.nf_total_carbohydrate}</p>`));
+                        card.append($(`<p>Fats: ${el.fields.nf_total_fat}</p>`));
+                        let button = ($(`<button class="select-button" data-id="${el.fields.item_id}" data-name="${el.fields.item_name}" data-brand="${el.fields.brand_name}" data-cal="${el.fields.nf_calories}" data-pro="${el.fields.nf_protein}" data-carbs="${el.fields.nf_total_carbohydrate}" data-fats="${el.fields
+                        .nf_total_fat}">Select</button>`));
+                        $(button).click(select);
+                        card.append(button);
+                        $("#results-container").append(card);
+                    });
+                    $("#results-box").css("display", "block");
+                },
+                error: (req, text, err) =>
+                {
+                    alert(`Something went wrong! Status: ${text}; Error: ${err}`);
+                }
+            });
+        }
     });
 
-    $("#save-button").click(() =>
+    $("#cancel-button").click((e) =>
     {
+        e.preventDefault();
+        document.location.replace("/dashboard");
+    });
 
+    $("#save-button").click((e) =>
+    {
+        e.preventDefault();
+        //Save foods to db.
+        //redirect to dashboard.
     });
 });

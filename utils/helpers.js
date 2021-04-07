@@ -1,7 +1,8 @@
 module.exports = {
     //Helper to format date and time.
     timeStamp: date => {
-        // return `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${new Date(date).getFullYear()}`;
-        return `${new Date(date).getMonth() + 1}/${new Date(date).getDate()}/${new Date(date).getFullYear()} at ${new Date(date).getHours()}:${new Date(date).getMinutes()}`;
+        const newDate = new Date(date);
+        //  "02/15/1994 at 09:41"
+        return `${newDate.getMonth() + 1}/${newDate.getDate()}/${newDate.getFullYear()} at ${newDate.getHours()}:${newDate.getMinutes()}`;
     }
   }

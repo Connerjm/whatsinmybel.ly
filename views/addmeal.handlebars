@@ -16,7 +16,18 @@
             <div>
                 <label for="foods-input">Search database for a food or meal</label>
                 <input type="text" id="foods-input" placeholder="Search foods">
+                <button id="search-button">Search</button>
                 {{!-- Maybe change to datalist? --}}
+            </div>
+            <hr>
+            <div id="results-box" style="display: none;">
+                <h6>Results</h6>
+                <div id="results-container"></div>
+            </div>
+            <hr>
+            <div id="items-box" style="display: none;">
+                <h6>Saved items</h6>
+                <div id="saved-container"></div>
             </div>
             <hr>
             <button id="cancel-button">Cancel</button>
