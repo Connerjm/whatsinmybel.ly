@@ -46,14 +46,14 @@ router.get('/:id', (req, res) => {
 // POST - Create a user
 router.post('/', (req, res) => {
     User.create({
-        name: req.body.name,
+        username: req.body.username,
         email: req.body.email,
         password: req.body.password
     })
         .then(userData => {
             req.session.save(() => {
                 req.session.user_id = userData.id;
-                req.session.name = userData.name;
+                req.session.username = userData.username;
                 req.session.loggedIn = true;
 
                 res.json(userData);
@@ -87,10 +87,10 @@ router.post('/sign-in', (req, res) => {
 
             req.session.save(() => {
                 req.session.user_id = userData.id;
-                req.session.name = userData.name;
+                req.session.username = userData.username;
                 req.session.loggedIn = true;
 
-                res.json({ user: userData, message: `Hi ${userData.name}, you're logged in! Time to blog!!` });
+                res.json({ user: userData, message: `Hi ${userData.username}, you're logged in! Time to blog!!` });
             });
         });
 });

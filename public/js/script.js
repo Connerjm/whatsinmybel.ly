@@ -49,7 +49,7 @@ $(document).ready(() =>
                 type: "POST",
                 data: JSON.stringify({ email, password }),
                 headers: { "Content-Type": "application/json" },
-                success: () => { document.location.replace("/") },
+                success: () => { document.location.replace("/dashboard") },
                 error: (req, text, err) =>
                 {
                     alert(`Something went wrong! Status: ${text}; Error: ${err}`);
@@ -73,7 +73,7 @@ $(document).ready(() =>
                 type: "POST",
                 data: JSON.stringify({ username, email, password }),
                 headers: { "Content-Type": "application/json" },
-                success: () => { document.location.replace("/") },
+                success: () => { document.location.replace("/dashboard") },
                 error: (req, text, err) =>
                 {
                     alert(`Something went wrong! Status: ${text}; Error: ${err}`);

@@ -32,7 +32,11 @@ router.get('/addmeal', withAuth, (req, res) => {
 });
 
 //Dashboard route.
-//TODO
+router.get("/dashboard", withAuth, (req, res) =>
+{
+    if (req.session.loggedIn)
+        res.render("dashboard", {/* Also needs this users meals. */ loggedIn: true });
+});
 
 //Export router.
 module.exports = router;
