@@ -1,3 +1,10 @@
+var axios = require("axios").default;
+
+module.exports = function nutritionxCall(search)
+{
+  const searchTerm = search;
+
+
 var options = {
   method: 'GET',
   url: `https://nutritionix-api.p.rapidapi.com/v1_1/search/${searchTerm}`,
@@ -14,15 +21,19 @@ var options = {
     // for(i=0;i<response.data.hits.length;i++){
     //     console.log(response.data.hits[i].fields.item_name)
     // }
-
-    // // This code logs the name, calories, fat, carbs, and protein for each item in the search array
-    // for(i=0;i<response.data.hits.length;i++){
-    //     console.log(response.data.hits[i].fields.item_name)
-    //     console.log(response.data.hits[i].fields.nf_calories)
-    //     console.log(response.data.hits[i].fields.nf_total_fat)
-    //     console.log(response.data.hits[i].fields.nf_total_carbohydrate)
-    //     console.log(response.data.hits[i].fields.nf_protein)
-    // }
+    
+    // This code logs the name, calories, fat, carbs, and protein for each item in the search array
+    for(i=0;i<response.data.hits.length;i++){
+        console.log(response.data.hits[i].fields.item_name)
+        console.log(response.data.hits[i].fields.nf_calories)
+        console.log(response.data.hits[i].fields.nf_total_fat)
+        console.log(response.data.hits[i].fields.nf_total_carbohydrate)
+        console.log(response.data.hits[i].fields.nf_protein)
+    }
 
     // // This code logs the full data for a singular item from the search (example using item array position 0)
     // console.log(response.data.hits[0].fields)
+}).catch(function (error) {
+	console.error(error);
+});
+}
