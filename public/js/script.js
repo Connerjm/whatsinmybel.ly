@@ -103,6 +103,12 @@ $(document).ready(() =>
         document.location.replace("/dashboard");
     });
 
+    function trash(e)
+    {
+        e.preventDefault();
+        $(this).parents()[0].remove();
+    }
+
     function select(e)
     {
         e.preventDefault();
@@ -121,8 +127,19 @@ $(document).ready(() =>
         //Clear text box.
         $("#foods-input").val("");
         //Add food to saved items box.
-        
+        let card = $(`<div></div>`);
+        card.append($(`<h3>${name}</h3>`));
+        card.append($(`<p>Brand: ${brand}</p>`));
+        card.append($(`<p>Calories: ${cal}</p>`));
+        card.append($(`<p>Protein: ${pro}</p>`));
+        card.append($(`<p>Carbs: ${carb}</p>`));
+        card.append($(`<p>Fats: ${fat}</p>`));
+        let button = $(`<button class="trash-button">Trash</button>`);
+        $(button).click(trash);
+        card.append(button);
+        $("#saved-container").append(card);
         //Show saved items box.
+        $("#items-box").css("display", "block");
     };
 
     $("#search-button").click((e) =>
@@ -144,6 +161,7 @@ $(document).ready(() =>
                 },
                 success: response => {
                     console.log(response.hits);
+                    $("#results-container").empty();
                     //put results in cards.
                     response.hits.forEach(el => {
                         let card = $(`<div></div`);
