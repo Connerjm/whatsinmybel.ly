@@ -31,9 +31,9 @@
     font-family: 'Roboto', sans-serif;
 }
 
-/* html {
+html {
     background-color: var(--green-light);
-} */
+}
 
 body {
     background-image: linear-gradient(180deg, #245C26,#245C26, #45B649);
@@ -198,12 +198,17 @@ caption {
     display: flex;
 }
 
+.flex-column {
+    flex-direction: column;
+    display: flex;
+    gap: 16px;
+}
+
 .fixed {
     position: fixed;
     bottom: 0px;
     padding-bottom: 20px;
 }
-
 
 /* buttons */
 
@@ -268,7 +273,7 @@ caption {
 .outline:hover {
     border: 1px solid #BDBDBD;
     outline: none;
-    color: var(--gray-01);s
+    color: var(--gray-01);
 }
 
 .outline {
@@ -402,7 +407,6 @@ main {
     padding-bottom: 80px;
 }
 
-
 /* CARDS */
 
 /* Sign up card */
@@ -418,6 +422,13 @@ main {
     padding: 32px;
 }
 
+@media (max-width: 800px) {
+    .card  {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+}
+
 .card-header {
     color: var(--primary);
     background-color: var(--dark);
@@ -429,10 +440,16 @@ main {
     padding: 20px;
 }
 
-.flex-column {
-    flex-direction: column;
+.card-button-layout {
+    flex-direction: row;
     display: flex;
-    gap: 16px;
+}
+
+@media (max-width: 800px) {
+    .card-button-layout {
+        flex-direction: column;
+        display: flex;
+}
 }
 
 /* meal cards */
