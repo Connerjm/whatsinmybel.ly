@@ -1,6 +1,6 @@
 const router = require('express').Router();
 //model, when all files are complete
-const { User, Blog, Meal } = require('../../models');
+const { User, Meal } = require('../../models');
 
 // GET all users
 router.get('/', (req, res) => {
@@ -25,12 +25,8 @@ router.get('/:id', (req, res) => {
         },
         include: [
             {
-                model: Blog,
-                attributes: ['id', 'title', 'content']
-            },
-            {
-                model: Comment,
-                attributes: ['id', 'content'],
+                model: Meal,
+                attributes: ['id', 'meal_name']
             }
         ]
     })
@@ -73,16 +69,16 @@ router.post('/', (req, res) => {
 router.post('/sign-in', (req, res) => {
     User.findOne({
         where: {
-            username: req.body.username
+            email: req.body.email
         }
     })
         .then(userData => {
             if (!userData) {
-                res.json(400).json({ message: "That username doesn't exist!" });
+                res.json(400).json({ message: "That email doesn't exist!" });
                 return;
             };
 
-            const validPassword = userData.passwordConfirm(req.body.password);
+            const validPassword = userData.checkPassword(req.body.password);
 
             if (!validPassword) {
                 res.status(400).json({ message: "That's not the right password..." });

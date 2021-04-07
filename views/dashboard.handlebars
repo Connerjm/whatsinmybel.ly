@@ -5,8 +5,8 @@
         <button id="add-meal-button">Add meal</button>
     </div>
     <div id="meals">
-        {{#for meals as |meal|}}
+        {{#each meals as |meal|}}
         {{> meal.handlebars}}
-        {{/for}}
+        {{/each}}
     </div>
 </main>

@@ -1,24 +1,28 @@
 <main>
-    <div class="card">
-        <form>
-            <h2>Sign up for an account</h2>
-            <hr>
-            <div>
+    <div class="card" style="top: 160px;">
+        <form class="flex-column">
+            <h2 class="foreground-brown">Sign up for an account</h2>
+            <div class="form-group">
                 <label for="username-input">Username</label>
-                <input type="text" id="username-input" placeholder="Username">
+                <input type="text" id="username-input" placeholder="Username" class="form-control">
             </div>
-            <div>
+            <div class="form-group">
                 <label for="email-input">E-mail</label>
-                <input type="email" id="email-input" placeholder="E-mail">
+                <input type="email" id="email-input" placeholder="E-mail" class="form-control">
             </div>
-            <div>
+            <div class="form-group">
                 <label for="password-input">Password</label>
-                <input type="password" id="password-input" placeholder="Password">
-                <div id="password-help">Must be between 8 - 25 characters.</div>
+                <input type="password" id="password-input" placeholder="Password" class="form-control">
+                <div id="password-help" style="margin-top: 8px;">Must be between 8 - 25 characters.</div>
             </div>
-            <hr>
-            <button id="sign-up-button">Create account</button>
-            <p>Already have an account? <a href="#">Sign in here</a></p>
+
+            <div class="flex-row">
+                <button class="btn brand" id="sign-up-button"><i class="fas fa-user-plus"
+                        style="padding-right: 8px;"></i>Create account</button>
+                <p style="margin: 15px;"><i class="fas fa-sign-in-alt" style="padding-right:8px;"></i>Already have an
+                    account? <a href="/signin">
+                        Sign in here</a></p>
+            </div>
         </form>
     </div>
 </main>
