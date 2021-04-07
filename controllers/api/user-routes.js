@@ -69,16 +69,16 @@ router.post('/', (req, res) => {
 router.post('/sign-in', (req, res) => {
     User.findOne({
         where: {
-            username: req.body.username
+            email: req.body.email
         }
     })
         .then(userData => {
             if (!userData) {
-                res.json(400).json({ message: "That username doesn't exist!" });
+                res.json(400).json({ message: "That email doesn't exist!" });
                 return;
             };
 
-            const validPassword = userData.passwordConfirm(req.body.password);
+            const validPassword = userData.checkPassword(req.body.password);
 
             if (!validPassword) {
                 res.status(400).json({ message: "That's not the right password..." });

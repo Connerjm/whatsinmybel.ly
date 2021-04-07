@@ -86,7 +86,7 @@ $(document).ready(() =>
 
     $("#add-meal-button").click(() =>
     {
-
+        document.location.replace("/addmeal");
     });
 
     /* Meal page. */

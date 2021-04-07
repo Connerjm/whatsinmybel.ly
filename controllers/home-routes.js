@@ -38,5 +38,11 @@ router.get("/dashboard", withAuth, (req, res) =>
         res.render("dashboard", {/* Also needs this users meals. */ loggedIn: true });
 });
 
+//Redirect to dash board on any other hit.
+router.get("*", (req, res) =>
+{
+    res.redirect("/dashboard");
+});
+
 //Export router.
 module.exports = router;
