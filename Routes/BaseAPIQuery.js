@@ -4,6 +4,7 @@ module.exports = function nutritionxCall(search)
 {
   const searchTerm = search;
 
+
 var options = {
   method: 'GET',
   url: `https://nutritionix-api.p.rapidapi.com/v1_1/search/${searchTerm}`,
@@ -16,8 +17,7 @@ var options = {
   }
 };
 
-axios.request(options).then(function (response) {
-    // // This code logs each item from the search and pulls the name for future user choice to select correct item
+	@@ -19,15 +16,14 @@ axios.request(options).then(function (response) {
     // for(i=0;i<response.data.hits.length;i++){
     //     console.log(response.data.hits[i].fields.item_name)
     // }
