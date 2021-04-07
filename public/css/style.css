@@ -198,12 +198,18 @@ caption {
     display: flex;
 }
 
+
+.flex-column {
+    flex-direction: column;
+    display: flex;
+    gap: 16px;
+}
+
 .fixed {
     position: fixed;
     bottom: 0px;
     padding-bottom: 20px;
 }
-
 
 /* buttons */
 
@@ -293,6 +299,7 @@ caption {
     height: 40px;
     background-color: rgba(255, 255, 255, 0);
     transition: transform .2s;
+
 }
 
 .btn-transparent:hover {
@@ -302,6 +309,18 @@ caption {
     color: white;
     background-color: rgba(0, 0, 0, 0.149);
 }
+
+
+}
+
+.btn-transparent:hover {
+    transform: scale(1.1);
+    z-index: 1;
+    cursor: pointer;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.149);
+}
+
 
 /* Header */
 
@@ -317,12 +336,21 @@ header {
 }
 
 @media (max-width: 800px) {
+
+    header  {
+    height: 180px;
+    flex-direction: column;
+    display: flex;
+    flex-wrap: wrap;
+}
+
     header {
         height: 180px;
         flex-direction: column;
         display: flex;
         flex-wrap: wrap;
     }
+
 }
 
 .header-logo-start {
@@ -358,7 +386,9 @@ header {
 @media (max-width: 800px) {
     .header-logo-layout {
         margin-bottom: 0px;
-    }
+
+}
+
 }
 
 .header-logo-image {
@@ -380,7 +410,9 @@ header {
         width: auto;
         margin-left: 25%;
         margin-right: 25%;
-    }
+
+}
+
 }
 
 /* hero content */
@@ -418,6 +450,13 @@ main {
     padding: 32px;
 }
 
+@media (max-width: 800px) {
+    .card  {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+}
+
 .card-header {
     color: var(--primary);
     background-color: var(--dark);
@@ -429,11 +468,133 @@ main {
     padding: 20px;
 }
 
-.flex-column {
-    flex-direction: column;
+.card-button-layout {
+    flex-direction: row;
     display: flex;
+}
+
+@media (max-width: 800px) {
+    .card-button-layout {
+        flex-direction: column;
+        display: flex;
+}
+}
+
+/* meal cards */
+
+.meal-card {
+    flex-direction: row;
+    display: flex;
+    border: 1px solid var(--gray-05);
+    border-radius: var(--border-radius-med);
+    background-color: white;
+    width: auto;
+    height: 140px;
+    padding: 0px;
+    transition: transform .2s;
+    box-shadow: 0 2x 4px 0 rgba(0, 0, 0, 0.108);
     gap: 16px;
 }
+
+
+@media (max-width: 800px) {
+    .meal-card {
+    flex-direction: column;
+    display: flex;
+    flex-wrap: wrap;
+    height: fit-content;
+    margin: 0px 20px 0px 20px;
+    gap: 0px;
+}
+}
+
+.meal-card:hover {
+    transform: scale(1.025);
+    cursor: pointer;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.053);
+}
+
+.meal-card-img {
+    border-top-left-radius: var(--border-radius-med);
+    border-bottom-left-radius: var(--border-radius-med);
+    object-fit: cover;
+    height: 140px;
+    width: 280px;
+}
+
+@media (max-width: 800px) {
+    .meal-card-img {
+    border-top-left-radius: var(--border-radius-med);
+    border-top-right-radius: var(--border-radius-med);
+    border-bottom-left-radius: 0px;
+    object-fit: cover;
+    height: 140px;
+    width: 100%;
+}
+}
+
+.meal-card-text-layout {
+    gap: 4px; 
+    padding-top: 16px; 
+    padding-bottom: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+    flex-direction: column;
+    display: flex;
+}
+
+@media (max-width: 800px) {
+    .meal-card-text-layout  {
+    padding-top: none; 
+    padding-bottom: 16px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+}
+
+.meal-form-card {
+    border: 1px solid var(--gray-05);
+    border-radius: var(--border-radius-med);
+    background-color: rgba(255, 255, 255, 0.795) !important;
+    backdrop-filter: blur(12px);
+    width: 100%;
+    margin-bottom: 32px;
+    margin-right:0px;
+    padding: 32px;
+    flex-direction: column;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Dashboard */
+
+.dashboard-title {
+    font-size: 48px;
+    font-style: normal;
+    letter-spacing: -1px;
+    text-align: center;
+    margin-bottom: 0px;
+    color: white;
+    font-weight: var(--text-emphasis);
+    text-shadow: var(--text-shadow);
+}
+
+@media (max-width: 1024px) {
+    .dashboard-title  {
+    font-size: 24px;
+}
+}
+
+.dashboard-title-layout {
+    flex-direction: row;
+    display: flex;
+    margin-left: 33.3%;
+    margin-right: 33.3%;
+    width: auto;
+}
+
+@media (max-width: 800px) {
 
 /* meal cards */
 
@@ -561,6 +722,16 @@ main {
 
 @keyframes progress-bar-stripes {
     from {
+
+      background-position: 1rem 0;
+    }
+    to {
+      background-position: 0 0;
+    }
+  }
+  
+  .progress {
+
         background-position: 1rem 0;
     }
 
@@ -570,6 +741,7 @@ main {
 }
 
 .progress {
+
     display: flex;
     height: 1rem;
     overflow: hidden;
@@ -577,7 +749,11 @@ main {
     font-size: 0.75rem;
     background-color: var(--green-dark);
     border-radius: 0.5rem;
+
+  }
+
 }
+
 
 .progress-bar {
     display: flex;
@@ -590,6 +766,32 @@ main {
     background-color: var(--green-yellow);
     transition: width 0.6s ease;
     border-radius: 0.5rem;
+
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .progress-bar {
+      transition: none;
+    }
+  }
+  
+  .progress-bar-striped {
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-size: 1rem 1rem;
+  }
+  
+  .progress-bar-animated {
+    animation: progress-bar-stripes 1s linear infinite;
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .progress-bar-animated {
+      animation: none;
+    }
+  }
+
+footer{
+
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -614,6 +816,7 @@ main {
 }
 
 footer {
+
     background-color: rgba(255, 255, 255, 0.795) !important;
     backdrop-filter: blur(12px);
     position: fixed;
@@ -621,6 +824,7 @@ footer {
     bottom: 0;
     width: 100%;
     border-top: 1px solid var(--gray-05);
+
 }
 
 
@@ -632,3 +836,16 @@ footer {
     padding-bottom: 12px;
     width: 100%;
 }
+
+}
+
+
+.footer-inner {
+    justify-content: space-between;
+    flex-direction: row;
+    display: flex;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    width: 100%;
+}
+
