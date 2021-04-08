@@ -35,7 +35,7 @@ router.get('/addmeal', withAuth, (req, res) => {
     {
         stats = {
             calsLeft: 2500,
-            calPerc: 0,
+            calsPerc: 0,
             prosLeft: 56,
             prosPerc: 0,
             carbsLeft: 300,
