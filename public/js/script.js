@@ -94,9 +94,20 @@ $(document).ready(() =>
 
     /* Meal page. */
 
-    $("#delete-meal").click(() =>
+    $(".remove-meal").click((e) =>
     {
-        //Remove meal from db.
+        const meal_id = $(e.currentTarget).data("id");
+
+        $.ajax({
+                url: `/api/Meal/${meal_id}`,
+                type: "DELETE",
+                headers: { "Content-Type": "application/json" },
+                success: () => { document.location.reload(); },
+                error: (req, text, err) =>
+                {
+                    alert(`Something went wrong! Status: ${text}; Error: ${err}`);
+                }
+            });
     });
 
     /* Add meal page. */
