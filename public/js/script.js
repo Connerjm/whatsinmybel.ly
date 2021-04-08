@@ -129,7 +129,7 @@ $(document).ready(() =>
         //Clear text box.
         $("#foods-input").val("");
         //Add food to saved items box.
-        let card = $(`<div class="meal-card">
+        let card = $(`<div class="meal-card" data-cal="${cal}" data-pro="${pro}" data-carb="${carb}" data-fat="${fat}">
                 <img class="meal-card-img"
                     src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OHx8YmFuYW5hc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60">
                 <div class="meal-card-text-layout">
@@ -144,7 +144,7 @@ $(document).ready(() =>
                 </div>
                 <div class="flex-row"
                     style="margin-right:16px; margin-left:auto; margin-top: 16px; margin-bottom: auto;">
-                    <button type="submit" class="btn outline trash-button" style="margin: 12 0 20 0;" data-name="${name}" data-brand="${brand}" data-cal="${cal}" data-pro="${pro}" data-carb="${carb}" data-fat="${fat}"><i
+                    <button type="submit" class="btn outline trash-button" style="margin: 12 0 20 0;"><i
                             class="fas fa-trash-alt" style="padding-right:8px;"></i>Trash</button>
                 </div>
             </div>`);
@@ -216,7 +216,41 @@ $(document).ready(() =>
     $("#save-button").click((e) =>
     {
         e.preventDefault();
-        //Save foods to db.
+
+        let name = $("#meal-type").val();
+        let totalCal = 0;
+        let totalPro = 0;
+        let totalCarb = 0;
+        let totalFat =0;
+
+        const foods = $("#saved-container").children();
+
+        for(let i = 0; i < foods.length; i++)
+        {
+            totalCal += $(foods[i]).data("cal");
+            totalPro += $(foods[i]).data("pro");
+            totalCarb += $(foods[i]).data("carb");
+            totalFat += $(foods[i]).data("fat");
+        }
+
+        $.ajax({
+            url: "/api/Meal/",
+            type: "POST",
+            data: JSON.stringify({
+                meal_name: name,
+                calories: totalCal,
+                fat: totalFat,
+                carbs: totalCarb,
+                protein: totalPro
+            }),
+            headers: { "Content-Type": "application/json" },
+            success: () => { document.location.replace("/dashboard") },
+            error: (req, text, err) =>
+            {
+                alert(`Something went wrong! Status: ${text}; Error: ${err}`);
+            }
+        });
+        
         //redirect to dashboard.
     });
 });
