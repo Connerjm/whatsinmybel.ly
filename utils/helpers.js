@@ -1,3 +1,4 @@
+//Imports. Using some helpers from another package.
 const exhelp = require("handlebars-helpers").comparison();
 
 module.exports = {

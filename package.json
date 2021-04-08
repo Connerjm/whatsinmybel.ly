@@ -28,7 +28,6 @@
     "express-session": "^1.17.1",
     "faker": "^5.5.2",
     "handlebars-helpers": "^0.10.0",
-    "mysql": "^2.18.1",
     "mysql2": "^2.2.5",
     "sequelize": "^6.6.2"
   },

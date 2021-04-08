@@ -5,7 +5,6 @@
       "fat": 14,
       "carbs": 40,
       "protein": 14,
-      "sodium": 30,
       "user_id": 2
     },
     {
@@ -13,7 +12,6 @@
       "calories": 950,
       "fat": 30,
       "carbs": 20,
-      "protein": 50,
-      "sodium": 200
+      "protein": 50
     }
   ]

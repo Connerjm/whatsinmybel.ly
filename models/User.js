@@ -40,7 +40,7 @@ User.init(
             allowNull: false,
             validate: {
 
-                len: [8],
+                len: [8, 25],
             }
         },
 
