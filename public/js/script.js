@@ -131,7 +131,7 @@ $(document).ready(() =>
         //Add food to saved items box.
         let card = $(`<div class="meal-card" data-cal="${cal}" data-pro="${pro}" data-carb="${carb}" data-fat="${fat}">
                 <img class="meal-card-img"
-                    src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OHx8YmFuYW5hc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60">
+                    src="../assets/Placeholder.png">
                 <div class="meal-card-text-layout">
                     <h3>${name}</h3>
                     <p>${brand}</p>
@@ -177,7 +177,7 @@ $(document).ready(() =>
                     response.hits.forEach(el => {
                         let card = $(`<div class="meal-card">
                 <img class="meal-card-img"
-                    src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OHx8YmFuYW5hc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60">
+                    src="../assets/Placeholder.png">
                 <div class="meal-card-text-layout">
                     <h3>${el.fields.item_name}</h3>
                     <p>${el.fields.brand_name}</p>
