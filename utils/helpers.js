@@ -1,7 +1,5 @@
 const exhelp = require("handlebars-helpers").comparison();
 
-console.log(exhelp);
-
 module.exports = {
     //Helper to format date and time.
     timeStamp: date => {

@@ -3,7 +3,7 @@ $(document).ready(() =>
     $("#results-box").hide();
     $("#saved-box").hide();
 
-    /* Button handlers. */
+    // Button handlers.
 
     /* Nav buttons. */
 

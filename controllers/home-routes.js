@@ -48,7 +48,9 @@ router.get("/dashboard", withAuth, async (req, res) =>
         // console.log to see the meal objects for later reference
         // console.log(meals)
 
-        res.render("dashboard", {meals, loggedIn: true });
+        console.log((new Date()).toDateString());
+
+        res.render("dashboard", {meals, loggedIn: true, date: (new Date()) });
     }
 });
 
