@@ -53,7 +53,7 @@ Consider this application still in a beta form, as we were a bit more ambitious 
 
 ## Links
 
-- [Live on Heroku](https://dashboard.heroku.com/apps/frozen-shore-23638)
+- [Live on Heroku](https://morning-savannah-50964.herokuapp.com)
 - [GitHub Repo](https://github.com/Connerjm/whatsinmybel.ly)
 
 ## Notes
