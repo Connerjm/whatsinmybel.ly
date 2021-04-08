@@ -1,5 +1,6 @@
 $(document).ready(() =>
 {
+    //Hide the two boxes initially.
     $("#results-box").hide();
     $("#saved-box").hide();
 
@@ -25,7 +26,7 @@ $(document).ready(() =>
     $("#logout").click(() =>
     {
         $.ajax({
-            url: "/api/user-routes/logout",
+            url: "/api/user/logout",
             type: "POST",
             headers: {"Content-Type" : "application/json" },
             success: () => { document.location.replace("/signin") },
@@ -48,7 +49,7 @@ $(document).ready(() =>
         if (email && password)
         {
             $.ajax({
-                url: "/api/user-routes/sign-in",
+                url: "/api/user/sign-in",
                 type: "POST",
                 data: JSON.stringify({ email, password }),
                 headers: { "Content-Type": "application/json" },
@@ -72,7 +73,7 @@ $(document).ready(() =>
         if (username && email && password)
         {
             $.ajax({
-                url: "/api/user-routes/",
+                url: "/api/user/",
                 type: "POST",
                 data: JSON.stringify({ username, email, password }),
                 headers: { "Content-Type": "application/json" },
@@ -99,7 +100,7 @@ $(document).ready(() =>
         const meal_id = $(e.currentTarget).data("id");
 
         $.ajax({
-                url: `/api/Meal/${meal_id}`,
+                url: `/api/meal/${meal_id}`,
                 type: "DELETE",
                 headers: { "Content-Type": "application/json" },
                 success: () => { document.location.reload(); },
@@ -133,8 +134,6 @@ $(document).ready(() =>
         const pro = $(this).data("pro");
         const carb = $(this).data("carb");
         const fat = $(this).data("fat");
-
-        console.log(`${name} ${brand} ${cal} ${pro} ${carb} ${fat}`);
         //Hide the results box.
         $("#results-box").hide();
         //Clear text box.
@@ -245,7 +244,7 @@ $(document).ready(() =>
         }
 
         $.ajax({
-            url: "/api/Meal/",
+            url: "/api/meal/",
             type: "POST",
             data: JSON.stringify({
                 meal_name: name,
@@ -261,7 +260,5 @@ $(document).ready(() =>
                 alert(`Something went wrong! Status: ${text}; Error: ${err}`);
             }
         });
-        
-        //redirect to dashboard.
     });
 });

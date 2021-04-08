@@ -87,8 +87,6 @@ router.get("/dashboard", withAuth, async (req, res) =>
         stats.carbsPerc = 100 - (stats.carbsLeft / 300 * 100);
         stats.fatsPerc = 100 - (stats.fatsLeft / 60 * 100);
 
-        // console.log to see the meal objects for later reference
-        // console.log(meals)
         req.session.save(() =>
         {
             req.session.stats = stats;
