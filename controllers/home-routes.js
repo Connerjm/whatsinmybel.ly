@@ -32,10 +32,24 @@ router.get('/addmeal', withAuth, (req, res) => {
 });
 
 //Dashboard route.
-router.get("/dashboard", withAuth, (req, res) =>
+router.get("/dashboard", withAuth, async (req, res) =>
 {
-    if (req.session.loggedIn)
-        res.render("dashboard", {/* Also needs this users meals. */ loggedIn: true });
+    if (req.session.loggedIn){
+        const userMeals = await Meal.findAll({
+            where:
+            {
+                user_id: req.session.user_id
+            },
+            order: [["createdAt", "DESC"]]
+        });
+
+        const meals = userMeals.map(meal => meal.get({ plain: true }));
+
+        // console.log to see the meal objects for later reference
+        // console.log(meals)
+
+        res.render("dashboard", {meals, loggedIn: true });
+    }
 });
 
 //Redirect to dash board on any other hit.
