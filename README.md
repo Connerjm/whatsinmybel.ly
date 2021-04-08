@@ -18,11 +18,18 @@
 
 ## Description
 
-This application is a full stack food tracker.
+This application is a full stack food tracker utilizing nutritionix api to grab accurate and up-to-date information on any and all aspects of your daily meals. Search foods and drinks in clear and consice searches and add them to your meals to see your total calories, proteins, carbs, and fats for the day.
+
+Consider this application still in a beta form, as we were a bit more ambitious then our time allowed.
 
 ## Features
 
-- Features go here lol
+- Personalized meal tracking.
+- Search a vast amount of food data using nutritionix.
+- Includes many brands and resturaunts other applications don't.
+- See how close you are to daily goals.
+- Bright and simple UI.
+- Straight forward stats. Don't get bogged down with overwhelming amount of information.
 
 ## Authors
 
@@ -41,6 +48,8 @@ This application is a full stack food tracker.
 - Handlebars
 - Dotenv
 - Bcrypt
+- Faker
+- Handlebar Helpers
 
 ## Links
 
