@@ -1,5 +1,8 @@
 $(document).ready(() =>
 {
+    $("#results-box").hide();
+    $("#saved-box").hide();
+
     /* Button handlers. */
 
     /* Nav buttons. */
@@ -103,26 +106,52 @@ $(document).ready(() =>
         document.location.replace("/dashboard");
     });
 
+    function trash(e)
+    {
+        e.preventDefault();
+        $(this).parents()[1].remove();
+    }
+
     function select(e)
     {
         e.preventDefault();
         //Get fields.
-        const id = $(this).data("id");
         const name = $(this).data("name");
         const brand = $(this).data("brand");
         const cal = $(this).data("cal");
         const pro = $(this).data("pro");
-        const carb = $(this).data("carbs");
-        const fat = $(this).data("fats");
+        const carb = $(this).data("carb");
+        const fat = $(this).data("fat");
 
-        console.log(`${id} ${name} ${brand} ${cal} ${pro} ${carb} ${fat}`);
+        console.log(`${name} ${brand} ${cal} ${pro} ${carb} ${fat}`);
         //Hide the results box.
-        $("#results-box").css("display", "none");
+        $("#results-box").hide();
         //Clear text box.
         $("#foods-input").val("");
         //Add food to saved items box.
-        
+        let card = $(`<div class="meal-card">
+                <img class="meal-card-img"
+                    src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OHx8YmFuYW5hc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60">
+                <div class="meal-card-text-layout">
+                    <h3>${name}</h3>
+                    <p>${brand}</p>
+                    <div class="flex-row" style="gap:20px; margin-top: 20px;">
+                        <p class="regular foreground-success">Calories: ${cal}</p>
+                        <p class="regular foreground-danger">Proteins: ${pro}g</p>
+                        <p class="regular foreground-warning">Carbs: ${carb}g</p>
+                        <p class="regular foreground-success">Fats: ${fat}g</p>
+                    </div>
+                </div>
+                <div class="flex-row"
+                    style="margin-right:16px; margin-left:auto; margin-top: 16px; margin-bottom: auto;">
+                    <button type="submit" class="btn outline trash-button" style="margin: 12 0 20 0;" data-name="${name}" data-brand="${brand}" data-cal="${cal}" data-pro="${pro}" data-carb="${carb}" data-fat="${fat}"><i
+                            class="fas fa-trash-alt" style="padding-right:8px;"></i>Trash</button>
+                </div>
+            </div>`);
+        $("#saved-container").append(card);
+        $(".trash-button").click(trash);
         //Show saved items box.
+        $("#saved-box").show();
     };
 
     $("#search-button").click((e) =>
@@ -143,23 +172,32 @@ $(document).ready(() =>
                     "x-rapidapi-host": "nutritionix-api.p.rapidapi.com"
                 },
                 success: response => {
-                    console.log(response.hits);
+                    $("#results-container").empty();
                     //put results in cards.
                     response.hits.forEach(el => {
-                        let card = $(`<div></div`);
-                        card.append($(`<h3>${el.fields.item_name}</h3>`));
-                        card.append($(`<p>Brand: ${el.fields.brand_name}</p>`));
-                        card.append($(`<p>Calories: ${el.fields.nf_calories}</p>`));
-                        card.append($(`<p>Protein: ${el.fields.nf_protein}</p>`));
-                        card.append($(`<p>Carbs: ${el.fields.nf_total_carbohydrate}</p>`));
-                        card.append($(`<p>Fats: ${el.fields.nf_total_fat}</p>`));
-                        let button = ($(`<button class="select-button" data-id="${el.fields.item_id}" data-name="${el.fields.item_name}" data-brand="${el.fields.brand_name}" data-cal="${el.fields.nf_calories}" data-pro="${el.fields.nf_protein}" data-carbs="${el.fields.nf_total_carbohydrate}" data-fats="${el.fields
-                        .nf_total_fat}">Select</button>`));
-                        $(button).click(select);
-                        card.append(button);
+                        let card = $(`<div class="meal-card">
+                <img class="meal-card-img"
+                    src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OHx8YmFuYW5hc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60">
+                <div class="meal-card-text-layout">
+                    <h3>${el.fields.item_name}</h3>
+                    <p>${el.fields.brand_name}</p>
+                    <div class="flex-row" style="gap:20px; margin-top: 20px;">
+                        <p class="regular foreground-success">Calories: ${el.fields.nf_calories}</p>
+                        <p class="regular foreground-danger">Proteins: ${el.fields.nf_protein}g</p>
+                        <p class="regular foreground-warning">Carbs: ${el.fields.nf_total_carbohydrate}g</p>
+                        <p class="regular foreground-success">Fats: ${el.fields.nf_total_fat}g</p>
+                    </div>
+                </div>
+                <div class="flex-row"
+                    style="margin-right:16px; margin-left:auto; margin-top: 16px; margin-bottom: auto;">
+                    <button type="submit" class="btn outline select-button" style="margin: 12 0 20 0;" data-name="${el.fields.item_name}" data-brand="${el.fields.brand_name}" data-cal="${el.fields.nf_calories}" data-pro="${el.fields.nf_protein}" data-carb="${el.fields.nf_total_carbohydrate}" data-fat="${el.fields.nf_total_fat}"><i
+                            class="fas fa-plus" style="padding-right:8px;"></i>Select</button>
+                </div>
+            </div>`);
                         $("#results-container").append(card);
                     });
-                    $("#results-box").css("display", "block");
+                    $(".select-button").click(select);
+                    $("#results-box").show();
                 },
                 error: (req, text, err) =>
                 {
