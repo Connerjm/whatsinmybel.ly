@@ -2,13 +2,9 @@
 var faker = require('faker');
 const fs = require('fs');
 const sequelize = require('../config/connection');
-const { User } = require('../models');
-const { Meal } = require('../models');
+const { User, Meal } = require('../models');
 
-//Grab the json data files.
-const userData = require('./userData.json');
-const mealData = require('./mealData.json');
-
+//Faker function.
 const fakerRun = () => {
   var randomName = faker.name.findName();
   var randomEmail = faker.internet.email();
@@ -16,12 +12,14 @@ const fakerRun = () => {
   return [randomName,randomEmail,randomPassword]
 }
 
+//Create fake entities.
 const json1 = fakerRun();
 const json2 = fakerRun();
 const json3 = fakerRun();
 const json4 = fakerRun();
 const json5 = fakerRun();
 
+//Write them to the file.
 const userJson = () => 
     `[
       {
@@ -51,6 +49,7 @@ const userJson = () =>
       }
     ]`
 
+//Try to write to the file.
 const init = () => {
   try {
     const jsonfile = userJson();
@@ -61,7 +60,12 @@ const init = () => {
   }
 };
 
-init()
+//Call the init function to populate a new userData.json file.
+init();
+
+//Grab the json data files.
+const mealData = require('./mealData.json');
+const userData = require('./userData.json');
 
 //Single function to seed the DB.
 const seedDatabase = async () => {
@@ -86,22 +90,3 @@ const seedDatabase = async () => {
 
 //Run the function.
 seedDatabase();
-
-// const seedMeal = require('./meal-seeds');
-// const seedUser = require('./user-seeds')
-
-
-// const sequelize = require('../config/connection');
-
-// const seedAll = async () => {
-//   await sequelize.sync({ force: true });
-//   console.log('\n----- DATABASE SYNCED -----\n');
-//   await seedMeal();
-//   console.log('\n----- MEALS SEEDED -----\n');
-//   await seedUser();
-//   console.log('\n----- USERS SEEDED -----\n')
-
-//   process.exit(0);
-// };
-
-// seedAll();

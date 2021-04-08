@@ -26,8 +26,26 @@ router.get('/signup', (req, res) => {
 
 // Route for page to create a new blog post
 router.get('/addmeal', withAuth, (req, res) => {
+    let stats;
+    if (req.session.stats)
+    {
+        stats = req.session.stats;
+    }
+    else
+    {
+        stats = {
+            calsLeft: 2500,
+            calPerc: 0,
+            prosLeft: 56,
+            prosPerc: 0,
+            carbsLeft: 300,
+            carbsPerc: 0,
+            fatsLeft: 60,
+            fatsPerc: 0
+        }
+    }
     if (req.session.loggedIn) {
-        res.render('addmeal', { loggedIn: true });
+        res.render('addmeal', { loggedIn: true, stats });
     }
 });
 
@@ -45,10 +63,36 @@ router.get("/dashboard", withAuth, async (req, res) =>
 
         const meals = userMeals.map(meal => meal.get({ plain: true }));
 
-        // console.log to see the meal objects for later reference
-        // console.log(meals)
+        const stats = {
+            calsLeft: 2500,
+            calPerc: 0,
+            prosLeft: 56,
+            prosPerc: 0,
+            carbsLeft: 300,
+            carbsPerc: 0,
+            fatsLeft: 60,
+            fatsPerc: 0
+        };
 
-        res.render("dashboard", {meals, loggedIn: true });
+        meals.forEach(el =>
+        {
+            stats.calsLeft -= el.calories;
+            stats.prosLeft -= el.protein;
+            stats.carbsLeft -= el.carbs;
+            stats.fatsLeft -= el.fat;
+        });
+
+        stats.calPerc = 100 - (stats.calsLeft / 2500 * 100);
+        stats.prosPerc = 100 - (stats.prosLeft / 56 * 100);
+        stats.carbsPerc = 100 - (stats.carbsLeft / 300 * 100);
+        stats.fatsPerc = 100 - (stats.fatsLeft / 60 * 100);
+
+        req.session.save(() =>
+        {
+            req.session.stats = stats;
+        });
+
+        res.render("dashboard", { meals, loggedIn: true, stats});
     }
 });
 

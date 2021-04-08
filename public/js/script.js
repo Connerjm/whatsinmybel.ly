@@ -1,9 +1,10 @@
 $(document).ready(() =>
 {
+    //Hide the two boxes initially.
     $("#results-box").hide();
     $("#saved-box").hide();
 
-    /* Button handlers. */
+    // Button handlers.
 
     /* Nav buttons. */
 
@@ -25,7 +26,7 @@ $(document).ready(() =>
     $("#logout").click(() =>
     {
         $.ajax({
-            url: "/api/user-routes/logout",
+            url: "/api/user/logout",
             type: "POST",
             headers: {"Content-Type" : "application/json" },
             success: () => { document.location.replace("/signin") },
@@ -48,7 +49,7 @@ $(document).ready(() =>
         if (email && password)
         {
             $.ajax({
-                url: "/api/user-routes/sign-in",
+                url: "/api/user/sign-in",
                 type: "POST",
                 data: JSON.stringify({ email, password }),
                 headers: { "Content-Type": "application/json" },
@@ -72,7 +73,7 @@ $(document).ready(() =>
         if (username && email && password)
         {
             $.ajax({
-                url: "/api/user-routes/",
+                url: "/api/user/",
                 type: "POST",
                 data: JSON.stringify({ username, email, password }),
                 headers: { "Content-Type": "application/json" },
@@ -94,9 +95,20 @@ $(document).ready(() =>
 
     /* Meal page. */
 
-    $("#delete-meal").click(() =>
+    $(".remove-meal").click((e) =>
     {
-        //Remove meal from db.
+        const meal_id = $(e.currentTarget).data("id");
+
+        $.ajax({
+                url: `/api/meal/${meal_id}`,
+                type: "DELETE",
+                headers: { "Content-Type": "application/json" },
+                success: () => { document.location.reload(); },
+                error: (req, text, err) =>
+                {
+                    alert(`Something went wrong! Status: ${text}; Error: ${err}`);
+                }
+            });
     });
 
     /* Add meal page. */
@@ -122,8 +134,6 @@ $(document).ready(() =>
         const pro = $(this).data("pro");
         const carb = $(this).data("carb");
         const fat = $(this).data("fat");
-
-        console.log(`${name} ${brand} ${cal} ${pro} ${carb} ${fat}`);
         //Hide the results box.
         $("#results-box").hide();
         //Clear text box.
@@ -131,7 +141,7 @@ $(document).ready(() =>
         //Add food to saved items box.
         let card = $(`<div class="meal-card" data-cal="${cal}" data-pro="${pro}" data-carb="${carb}" data-fat="${fat}">
                 <img class="meal-card-img"
-                    src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OHx8YmFuYW5hc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60">
+                    src="../assets/Placeholder.png">
                 <div class="meal-card-text-layout">
                     <h3>${name}</h3>
                     <p>${brand}</p>
@@ -177,7 +187,7 @@ $(document).ready(() =>
                     response.hits.forEach(el => {
                         let card = $(`<div class="meal-card">
                 <img class="meal-card-img"
-                    src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OHx8YmFuYW5hc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60">
+                    src="../assets/Placeholder.png">
                 <div class="meal-card-text-layout">
                     <h3>${el.fields.item_name}</h3>
                     <p>${el.fields.brand_name}</p>
@@ -234,7 +244,7 @@ $(document).ready(() =>
         }
 
         $.ajax({
-            url: "/api/Meal/",
+            url: "/api/meal/",
             type: "POST",
             data: JSON.stringify({
                 meal_name: name,
@@ -250,7 +260,5 @@ $(document).ready(() =>
                 alert(`Something went wrong! Status: ${text}; Error: ${err}`);
             }
         });
-        
-        //redirect to dashboard.
     });
 });

@@ -1,27 +1,23 @@
-{{!-- <div id="meal">
-    <img src="#" alt="#">
-    <div>
-        <h5>Dinner</h5>
-        <p>Mixed salad, Remoulade, Roast Chicken</p>
-        <p>Calories: <span class="cals">506</span> Protein: <span class="pros">3.4g</span> Carbs: <span
-                class="carbs">2.4g</span> Fats: <span class="fats">5.4g</span></p>
-    </div>
-    <div>
-        <button class="delete-meal">Remove</button>
-    </div>
-</div> --}}
-
 {{!-- meal card --}}
 <div class="meal-card" id="meal">
 
     {{!-- meal thumbnail --}}
-    <img class="meal-card-img"
-        src="https://images.unsplash.com/photo-1513442542250-854d436a73f2?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2358&q=80">
+    {{!-- Uses handlebars helpers npm package. --}}
+    {{#if (eq meal_name "Breakfast")}}
+    <img class="meal-card-img" src="./assets/Breakfast.png">
+    {{else if (eq meal_name "Lunch")}}
+    <img class="meal-card-img" src="./assets/Lunch.png">
+    {{else if (eq meal_name "Snack")}}
+    <img class="meal-card-img" src="./assets/Snack.png">
+    {{else if (eq meal_name "Dinner")}}
+    <img class="meal-card-img" src="./assets/Dinner.png">
+    {{else if (eq meal_name "Beverage")}}
+    <img class="meal-card-img" src="./assets/Beverage.png">
+    {{/if}}
 
     {{!-- meal details --}}
     <div class="meal-card-text-layout">
         <h3 id="meal-type">{{meal_name}}</h3>
-        {{!-- <p id="meal-items">Poached eggs, toast, tomatoes</p> --}}
 
         {{!-- meal nutrition --}}
         <div class="flex-row" style="gap:20px; margin-top: 20px;">
@@ -34,8 +30,8 @@
 
     {{!-- meal actions --}}
     <div class="flex-row" style="margin-right:16px; margin-left:auto; margin-top: 16px; margin-bottom: auto;">
-        <button id="cancel-add" type="submit" class="btn outline" style="margin: 12 0 20 0;"><i class="far fa-trash-alt"
-                style="padding-right:8px;"></i>Remove</button>
+        <button type="submit" class="btn outline remove-meal" data-id={{id}} style="margin: 12 0 20 0;"><i
+                class="far fa-trash-alt" style="padding-right:8px;"></i>Remove</button>
 
     </div>
 </div>
