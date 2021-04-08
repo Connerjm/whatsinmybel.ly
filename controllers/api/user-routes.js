@@ -36,7 +36,6 @@ router.get('/:id', (req, res) => {
                 return;
             }
             res.json(userData);
-            console.log(userData)
         })
         .catch(err => {
             console.log(err);
