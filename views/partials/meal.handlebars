@@ -20,22 +20,22 @@
 
     {{!-- meal details --}}
     <div class="meal-card-text-layout">
-        <h3 id="meal-type">Breakfast</h3>
-        <p id="meal-items">Poached eggs, toast, tomatoes</p>
+        <h3 id="meal-type">{{meal_name}}</h3>
+        {{!-- <p id="meal-items">Poached eggs, toast, tomatoes</p> --}}
 
         {{!-- meal nutrition --}}
         <div class="flex-row" style="gap:20px; margin-top: 20px;">
-            <p class="regular foreground-success" id="calories-meal">Calories: 480</p>
-            <p class="regular foreground-danger" id="protein-meal">Proteins: 11.2g</p>
-            <p class="regular foreground-warning" id="carbs-meal">Carbs: 22g</p>
-            <p class="regular foreground-success" id="fats-meal">Fats: 0.8g</p>
+            <p class="regular foreground-success" id="calories-meal">Calories: {{calories}}</p>
+            <p class="regular foreground-danger" id="protein-meal">Proteins: {{protein}}g</p>
+            <p class="regular foreground-warning" id="carbs-meal">Carbs: {{carbs}}g</p>
+            <p class="regular foreground-success" id="fats-meal">Fats: {{fat}}g</p>
         </div>
     </div>
 
     {{!-- meal actions --}}
     <div class="flex-row" style="margin-right:16px; margin-left:auto; margin-top: 16px; margin-bottom: auto;">
         <button id="cancel-add" type="submit" class="btn outline" style="margin: 12 0 20 0;"><i class="far fa-trash-alt"
-        style="padding-right:8px;"></i>Remove</button>
+                style="padding-right:8px;"></i>Remove</button>
 
     </div>
 </div>

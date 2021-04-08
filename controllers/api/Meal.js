@@ -31,7 +31,10 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  Meal.create(req.body)
+  Meal.create({
+    ...req.body,
+    user_id: req.session.user_id
+  })
     .then((meal) => {
       res.status(200).json(meal);
     })
