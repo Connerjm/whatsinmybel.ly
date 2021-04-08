@@ -1,160 +1,69 @@
-{{!-- {{dashheader.handlebars}}
-<div>
-    <button id="go-back-button">arrow</button>
-    <h1>Add meal</h1>
-    <div class="card">
-        <form>
-            <div>
-                <label for="type-input">Meal type</label>
-                <select id="type-input" class="form-select">
-                    <option selected>Choose a meal type</option>
-                    <option value="breakfast">Breakfast</option>
-                    <option value="lunch">Lunch</option>
-                    <option value="dinner">Dinner</option>
-                </select>
+{{> dashheader}}
+
+<div class="light">
+    {{!-- section header --}}
+    ​<div class="container" style="position: relative; margin-top: 32px;">
+        <div class="row">
+            <div class="col-lg-2">
+
+                {{!-- back button --}}
+                <button class="btn outline" id="go-back-button" style="width: 100%;"><i
+                        class="fas fa-chevron-left"></i></button>
             </div>
-            <div>
-                <label for="foods-input">Search database for a food or meal</label>
-                <input type="text" id="foods-input" placeholder="Search foods">
-                <button id="search-button">Search</button>
-                {{!-- Maybe change to datalist? --}}
+            <div class="col-lg-10" style="margin-bottom: 32px;">
+                <h1>Add Meal</h1>
             </div>
-            <div id="results-box" style="display: none;">
-                <hr>
-                <h6>Results</h6>
+        </div>
+
+        {{!-- container --}}
+        <div class="meal-form-card">
+
+            {{!-- form --}}
+            <form id="meal-form" class="form-inline">
+
+                {{!-- dropdown options --}}
+                <div class="form-group">
+                    <label for="meal-type">Meal</label>
+                    <select class="form-control form-control-lg" id="meal-type">
+                        <option>Select a meal type</option>
+                        <option>Breakfast</option>
+                        <option>Lunch</option>
+                        <option>Dinner</option>
+                        <option>Snack</option>
+                        <option>Beverage</option>
+                    </select>
+                </div>
+
+                {{!-- search food input --}}
+                <div class="form-group" style="padding-top:20px;">
+                    <label for="foods-input">Search database for a food or meal</label>
+                    <div class="flex-row">
+                        <input type="text" class="form-control form-control-lg" id="foods-input"
+                            placeholder="Search foods">
+
+                        {{!-- submit search query --}}
+                        <button id="search-button" type="submit" class="btn outline" style="margin-top:20px;"><i
+                                class="fas fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+
+            <div id="results-box">
+                <label>Results</label>
                 <div id="results-container"></div>
             </div>
-            <div id="items-box" style="display: none;">
-                <hr>
-                <h6>Saved items</h6>
+            <div id="saved-box">
+                <label>Saved items</label>
                 <div id="saved-container"></div>
             </div>
-            <hr>
-            <button id="cancel-button">Cancel</button>
-            <button id="save-button">Save</button>
-        </form>
-    </div>
-</div> --}}
 
-
-{{dashheader.handlebars}}
-
-{{!-- section header --}}
-​<div class="container" style="position: relative; margin-top: 32px;">
-    <div class="row">
-        <div class="col-lg-2">
-
-            {{!-- back button --}}
-            <button class="btn outline" id="go-back-button" style="width: 100%;"><i class="fas fa-chevron-left"></i></button>
-        </div>
-        <div class="col-lg-10" style="margin-bottom: 32px;">
-            <h1>Add Meal</h1>
-        </div>
-    </div>
-
-{{!-- container --}}
-    <div class="meal-form-card">
-
-        {{!-- form --}}
-        <form id="meal-form" class="form-inline">
-
-            {{!-- dropdown options --}}
-            <div class="form-group">
-                <label for="meal-type">Meal</label>
-                <select class="form-control form-control-lg" id="meal-type">
-                    <option>Select a meal type</option>
-                    <option>Breakfast</option>
-                    <option>Lunch</option>
-                    <option>Dinner</option>
-                    <option>Snack</option>
-                    <option>Beverage</option>
-                </select>
-            </div>
-
-            {{!-- search food input --}}
-            <div class="form-group" style="padding-top:20px;">
-                <label for="foods-input">Search database for a food or meal</label>
-                <div class="flex-row">
-                    <input type="text" class="form-control form-control-lg" id="foods-input"
-                        placeholder="Search foods">
-
-                    {{!-- submit search query --}}
-                    <button id="submit-search" type="submit" class="btn outline" style="margin-top:20px;"><i
-                            class="fas fa-search"></i></button>
-                </div>
-            </div>
-        </form>
-
-
-    <!-- results example -->
-
-        {{!-- results group label --}}
-        <label for="add-food">Results</label>
-
-
-        {{!-- result card --}}
-        <div class="meal-card" id="search-result">
-
-            {{!-- item thumbnail --}}
-            <img class="meal-card-img"
-                src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?ixid=MXwxMjA3fDB8MHxzZWFyY2h8OHx8YmFuYW5hc3xlbnwwfHwwfA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60">
-            <div class="meal-card-text-layout">
-
-                {{!-- item information --}}
-                <h3 id="food-type">Bananas</h3>
-                <p id="food-description">Tropical Fruit</p>
-
-                {{!-- nutritional information --}}
-                <div class="flex-row" style="gap:20px; margin-top: 20px;">
-                    <p class="regular foreground-success" id="calories-meal">Calories: 480</p>
-                    <p class="regular foreground-danger" id="protein-meal">Proteins: 11.2g</p>
-                    <p class="regular foreground-warning" id="carbs-meal">Carbs: 22g</p>
-                    <p class="regular foreground-success" id="fats-meal">Fats: 0.8g</p>
-                </div>
-            </div>
-            <div class="flex-row" style="margin-right:16px; margin-left:auto; margin-top: 16px; margin-bottom: auto;">
-                <button id="cancel-add" type="submit" class="btn outline" style="margin: 12 0 20 0;"><i
-                        class="fas fa-plus" style="padding-right:8px;"></i>Select</button>
+            {{!-- submit form --}}
+            <div class="flex-row">
+                <button id="cancel-button" type="submit" class="btn danger" style="margin-top:20px;">Cancel</button>
+                <button id="save-button" type="submit" class="btn brand" style="margin-top:20px;">Save</button>
             </div>
         </div>
-
-        {{!-- saved food items --}}
-        <label for="add-food">Saved items</label>
-
-        {{!-- result card --}}
-        <div class="meal-card" id="#">
-
-            {{!-- item thumbnail --}}
-            <img class="meal-card-img"
-                src="https://images.unsplash.com/photo-1570911946982-09be4ace3182?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1575&q=80">
-            <div class="meal-card-text-layout">
-                <h3 id="food-type">Butterscotch Ice Cream</h3>
-                <p id="food-description">Ice Cream</p>
-
-                {{!-- nutritional information --}}
-                <div class="flex-row" style="gap:20px; margin-top: 20px;">
-                    <p class="regular foreground-success" id="calories-meal">Calories: 480</p>
-                    <p class="regular foreground-danger" id="protein-meal">Proteins: 11.2g</p>
-                    <p class="regular foreground-warning" id="carbs-meal">Carbs: 22g</p>
-                    <p class="regular foreground-success" id="fats-meal">Fats: 0.8g</p>
-                </div>
-            </div>
-
-            {{!-- remove buttons --}}
-            <div class="flex-row" style="margin-right:16px; margin-left:auto; margin-top: 16px; margin-bottom: auto;">
-                <button id="cancel-add" type="submit" class="btn outline" style="margin: 12 0 20 0;"><i
-                        class="far fa-trash-alt" style="padding-right:8px;"></i>Remove</button>
-            </div>
-        </div>
-
-        
-       {{!-- submit form --}}
-        <div class="flex-row">
-            <button id="cancel-button" type="submit" class="btn danger" style="margin-top:20px;">Cancel</button>
-            <button id="save-button" type="submit" class="btn brand" style="margin-top:20px;">Save</button>
-        </div>
-    </div>
-
 
     </div>
-    </form>
+</div>
+</form>
