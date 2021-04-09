@@ -35,7 +35,7 @@ router.get('/addmeal', withAuth, (req, res) => {
     {
         stats = {
             calsLeft: 2500,
-            calPerc: 0,
+            calsPerc: 0,
             prosLeft: 56,
             prosPerc: 0,
             carbsLeft: 300,
@@ -65,7 +65,7 @@ router.get("/dashboard", withAuth, async (req, res) =>
 
         const stats = {
             calsLeft: 2500,
-            calPerc: 0,
+            calsPerc: 0,
             prosLeft: 56,
             prosPerc: 0,
             carbsLeft: 300,
@@ -82,7 +82,7 @@ router.get("/dashboard", withAuth, async (req, res) =>
             stats.fatsLeft -= el.fat;
         });
 
-        stats.calPerc = 100 - (stats.calsLeft / 2500 * 100);
+        stats.calsPerc = 100 - (stats.calsLeft / 2500 * 100);
         stats.prosPerc = 100 - (stats.prosLeft / 56 * 100);
         stats.carbsPerc = 100 - (stats.carbsLeft / 300 * 100);
         stats.fatsPerc = 100 - (stats.fatsLeft / 60 * 100);
